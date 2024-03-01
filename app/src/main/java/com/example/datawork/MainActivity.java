@@ -1,11 +1,13 @@
 package com.example.datawork;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowInsetsController;
@@ -17,7 +19,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
+    FirebaseAuth mAuth;
     private int backPressCount = 0;
     private ImageView logo;
     private TextView txtDataWorks, txtiniciar;
@@ -29,6 +38,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        logo = (ImageView) findViewById(R.id.logo);
+        txtDataWorks = (TextView) findViewById(R.id.txtDataWorks);
+        txtiniciar = (TextView) findViewById(R.id.txtiniciar);
+        txtUsuario = (EditText) findViewById(R.id.txtUsuario);
+        txtContraseña = (EditText) findViewById(R.id.txtcontraseña);
+        btnLogin = (Button) findViewById(R.id.btnLogin);
+        btnRegistrar = (Button) findViewById(R.id.btnRegistrar);
     }
 
     @Override
@@ -50,36 +69,53 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void OnClick_btnEntrar(View v){
-        // Implement login logic here (e.g., validate credentials, handle errors)
-        logo = (ImageView) findViewById(R.id.logo);
-        txtDataWorks = (TextView) findViewById(R.id.txtDataWorks);
-        txtiniciar = (TextView) findViewById(R.id.txtiniciar);
-        txtUsuario = (EditText) findViewById(R.id.txtUsuario);
-        txtContraseña = (EditText) findViewById(R.id.txtcontraseña);
-        btnLogin = (Button) findViewById(R.id.btnLogin);
-        btnRegistrar = (Button) findViewById(R.id.btnRegistrar);
 
-        // Assuming successful login, initiate animation and activity transition
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.desplazamiento_arriba);
+        String email, password;
+        email = txtUsuario.getText().toString();
+        password = txtContraseña.getText().toString();
 
-        // Apply animation to relevant views
-        logo.startAnimation(animation);
-        txtDataWorks.startAnimation(animation);
-        txtiniciar.startAnimation(animation);
-        txtUsuario.startAnimation(animation);
-        txtContraseña.startAnimation(animation);
-        btnLogin.startAnimation(animation);
-        btnRegistrar.startAnimation(animation);
+        if (TextUtils.isEmpty(email)){
+            Toast.makeText(MainActivity.this,"Ingresa tu usuario",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (TextUtils.isEmpty(password)){
+            Toast.makeText(MainActivity.this,"Ingresa tu contraseña",Toast.LENGTH_LONG).show();
+            return;
+        }
 
-        // Start a new thread for the activity transition after animation finishes
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(MainActivity.this, Frm_Menu.class);
-                startActivity(intent);
-                finish(); // Optionally close this activity to prevent accidental back navigation
-            }
-        }, animation.getDuration()); // Delay based on animation duration
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+
+                            Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.desplazamiento_arriba);
+
+                            logo.startAnimation(animation);
+                            txtDataWorks.startAnimation(animation);
+                            txtiniciar.startAnimation(animation);
+                            txtUsuario.startAnimation(animation);
+                            txtContraseña.startAnimation(animation);
+                            btnLogin.startAnimation(animation);
+                            btnRegistrar.startAnimation(animation);
+
+                            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent intent = new Intent(MainActivity.this, Frm_Menu.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }, animation.getDuration());
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(MainActivity.this, "Authentication failed." + email + password,
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
     }
     public void OnClick_btnRegistrarse(View v){

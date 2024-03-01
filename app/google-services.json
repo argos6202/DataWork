@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1025536581312",
+    "project_id": "data-works-66190",
+    "storage_bucket": "data-works-66190.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1025536581312:android:0a561bd088033d5d069725",
+        "android_client_info": {
+          "package_name": "com.example.datawork"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVnBPs69pr7UxTP3VDD6V25KPrgSOLF6A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

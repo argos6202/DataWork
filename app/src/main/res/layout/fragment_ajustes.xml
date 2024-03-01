@@ -87,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Generar nómina"
-                android:textSize="15sp"/>
+                android:textSize="15sp" />
             <TextView
                 android:textColor="@color/black"
                 android:padding="5sp"
