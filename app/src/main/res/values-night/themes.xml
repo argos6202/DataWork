@@ -1,0 +1,14 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.DataWork" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item> <!-- Color principal -->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item> <!-- Color primario oscuro -->
+        <item name="colorAccent">@color/colorAccent</item> <!-- Color de acento -->
+
+        <!-- Fondos -->
+        <item name="backgroundColor">@color/backgroundColor</item> <!-- Color de fondo principal -->
+
+        <!-- Otros -->
+        <item name="dividerColor">@color/dividerColor</item> <!-- Color de divisor -->
+    </style>
+</resources>

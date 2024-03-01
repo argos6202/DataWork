@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Frm_Menu">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vPantalla"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/menu"/>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/menu"
+        android:layout_width="match_parent"
+        android:layout_height="70sp"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent"
+        android:foregroundTint="@color/black"
+        app:tabTextColor="@color/black"
+        app:tabIconTint="@color/black">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/FrmMenu_tabinicio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inicio"
+            android:icon="@drawable/inicio"/>
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/FrmMenu_tabEmpleados"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Empleados"
+            android:icon="@drawable/baseline_person_2_24"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/FrmMenu_tabcur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pagos"
+            android:icon="@drawable/pagos"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/FrmMenu_tabusu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ajustes"
+            android:icon="@drawable/settings"/>
+    </com.google.android.material.tabs.TabLayout>
+</RelativeLayout>

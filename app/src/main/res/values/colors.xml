@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="azul">#6200EE</color>
+    <color name="gris">#97A2AA</color>
+    <color name="user">#FF9800</color>
+    <color name="btn">#E4DBCE</color>
+
+    <!-- Colores -->
+    <color name="colorPrimary">#6200EE</color> <!-- Color principal -->
+    <color name="colorPrimaryDark">#3700B3</color> <!-- Color primario oscuro -->
+    <color name="colorAccent">#03DAC5</color> <!-- Color de acento -->
+
+    <!-- Fondos -->
+    <color name="backgroundColor">#121212</color> <!-- Color de fondo principal -->
+    <color name="windowBackground">#121212</color> <!-- Color de fondo de la ventana -->
+
+    <!-- Textos -->
+    <color name="textColorPrimary">#FFFFFF</color> <!-- Color de texto principal -->
+    <color name="textColorSecondary">#BDBDBD</color> <!-- Color de texto secundario -->
+
+    <!-- Otros -->
+    <color name="dividerColor">#757575</color> <!-- Color de divisor -->
+
+</resources>

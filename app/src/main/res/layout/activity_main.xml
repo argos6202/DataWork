@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".MainActivity">
+
+
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="60sp"
+                android:layout_height="40sp"
+                app:srcCompat="@drawable/minilogo"
+                android:layout_marginTop="100sp"
+                android:layout_marginLeft="10sp"/>
+
+            <TextView
+                android:id="@+id/txtDataWorks"
+                android:layout_width="300sp"
+                android:layout_height="70sp"
+                android:layout_marginTop="92sp"
+                android:fontFamily="@font/aclonica"
+                android:text="DATA WORKS"
+                android:textColor="@color/black"
+                android:textSize="40sp" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/txtiniciar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Iniciar Sesión"
+            android:shadowDx="3"
+            android:shadowDy="10"
+            android:shadowColor="@color/gris"
+            android:shadowRadius="3"
+            android:layout_marginTop="60sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/b612_mono"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:textSize="40sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:orientation="vertical"
+        android:padding="18sp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/txtUsuario"
+                android:layout_width="270sp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="40dp"
+                android:drawableLeft="@drawable/usuario"
+                android:drawablePadding="7sp"
+                android:fontFamily="@font/gabriela"
+                android:inputType="textEmailAddress"
+                android:hint="Usuario"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
+                android:textSize="30dp" />
+
+            <EditText
+                android:id="@+id/txtcontraseña"
+                android:layout_width="270sp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="20dp"
+                android:drawableLeft="@drawable/candadoo"
+                android:drawablePadding="7sp"
+                android:fontFamily="@font/gabriela"
+                android:inputType="numberPassword"
+                android:hint="Contraseña"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="30dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:padding="20sp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20sp"
+            android:paddingTop="10sp"
+            android:orientation="vertical">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/azul"
+                android:textColor="@color/white"
+                android:shadowColor="#000000"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:shadowRadius="10"
+                android:text="Entrar"
+                app:cornerRadius="40dp"
+                android:alpha="0.8"
+                android:onClick="OnClick_btnEntrar"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRegistrar"
+        android:layout_width="200sp"
+        android:layout_height="50dp"
+        android:layout_below="@id/content"
+        android:layout_marginLeft="-50sp"
+        android:backgroundTint="@color/azul"
+        android:shadowColor="#000000"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="10"
+        android:text="Registrarse"
+        android:textColor="@color/white"
+        app:cornerRadius="40dp"
+        android:alpha="0.8"
+        android:onClick="OnClick_btnRegistrarse"/>
+
+</RelativeLayout>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".menu.FragmentAjustes">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="60sp"
+        android:paddingLeft="20sp"
+        android:paddingRight="20sp">
+        <LinearLayout
+            android:id="@+id/header_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/txtUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ana María"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="20sp"
+            android:orientation="vertical"
+            android:id="@+id/InfoUsuario"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/mujer"
+                app:shapeAppearanceOverlay="@style/CircularImageView"/>
+            <TextView
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:id="@+id/txtNombreUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ana María"
+                android:textSize="25sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:textColor="@color/user"
+                android:gravity="center"
+                android:id="@+id/txtuser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ana_maria"
+                android:textSize="15sp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPagar"
+                android:layout_marginTop="5sp"
+                android:text="Pagar"
+                android:textStyle="bold"
+                android:backgroundTint="@color/btn"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Funciones rápidas"
+                android:textSize="27sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:textColor="@color/black"
+                android:padding="5sp"
+                android:drawableEnd="@drawable/right"
+                android:layout_marginTop="10sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Generar nómina"
+                android:textSize="15sp"/>
+            <TextView
+                android:textColor="@color/black"
+                android:padding="5sp"
+                android:drawableEnd="@drawable/right"
+                android:layout_marginTop="10sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Registro Horas"
+                android:textSize="15sp"/>
+            <TextView
+                android:textColor="@color/black"
+                android:padding="5sp"
+                android:drawableEnd="@drawable/right"
+                android:layout_marginTop="10sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ejecutar pagos"
+                android:textSize="15sp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10sp"/>
+
+            <TextView
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Informes y herramientas"
+                android:textSize="27sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:textColor="@color/black"
+                android:padding="5sp"
+                android:drawableEnd="@drawable/right"
+                android:layout_marginTop="10sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hacer un informe"
+                android:textSize="15sp"/>
+            <TextView
+                android:textColor="@color/black"
+                android:padding="5sp"
+                android:drawableEnd="@drawable/right"
+                android:layout_marginTop="10sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Calculadora de salario"
+                android:textSize="15sp"/>
+            <TextView
+                android:textColor="@color/black"
+                android:padding="5sp"
+                android:drawableEnd="@drawable/right"
+                android:layout_marginTop="10sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ver resultados"
+                android:textSize="15sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
