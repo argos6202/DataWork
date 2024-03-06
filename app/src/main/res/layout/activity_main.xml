@@ -43,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Iniciar Sesión"
+            android:background="@drawable/background_selector"
             android:shadowDx="3"
             android:shadowDy="10"
             android:shadowColor="@color/gris"
@@ -52,6 +53,7 @@
             android:fontFamily="@font/b612_mono"
             android:textColor="@color/black"
             android:gravity="center"
+            android:onClick="OnClick_IniciarSesion"
             android:textSize="40sp"/>
     </LinearLayout>
 

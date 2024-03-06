@@ -1,14 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".menu.FragmentInicio">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:paddingTop="40sp"
+        android:paddingLeft="20sp"
+        android:paddingRight="20sp"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
+        <TextView
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="MENU DE OPCIONES"
+            android:paddingBottom="10sp"
+            android:textSize="35sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/MnuPagosRealizados"
+            android:textColor="@color/black"
+            android:padding="10sp"
+            android:drawableEnd="@drawable/right"
+            android:layout_marginTop="10sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pagos realizados"
+            android:textSize="20sp" />
+        <TextView
+            android:textColor="@color/black"
+            android:padding="10sp"
+            android:drawableEnd="@drawable/right"
+            android:layout_marginTop="10sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pagos faltantes"
+            android:background="@drawable/background_selector"
+            android:textSize="20sp"
+            android:onClick="pagos"/>
+        <TextView
+            android:textColor="@color/black"
+            android:padding="10sp"
+            android:drawableEnd="@drawable/right"
+            android:layout_marginTop="10sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registro de pagos"
+            android:background="@drawable/background_selector"
+            android:textSize="20sp"/>
+        <TextView
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Personal"
+            android:paddingBottom="10sp"
+            android:paddingTop="10sp"
+            android:textSize="35sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:textColor="@color/black"
+            android:padding="10sp"
+            android:drawableEnd="@drawable/right"
+            android:layout_marginTop="10sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Agregar trabajador"
+            android:textSize="20sp" />
+        <TextView
+            android:textColor="@color/black"
+            android:padding="10sp"
+            android:drawableEnd="@drawable/right"
+            android:layout_marginTop="10sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dar de baja"
+            android:textSize="20sp"/>
+        <TextView
+            android:textColor="@color/black"
+            android:padding="10sp"
+            android:drawableEnd="@drawable/right"
+            android:layout_marginTop="10sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Editar datos trabajador"
+            android:textSize="20sp"/>
+        <TextView
+            android:textColor="@color/black"
+            android:padding="10sp"
+            android:drawableEnd="@drawable/right"
+            android:layout_marginTop="10sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Observaciones"
+            android:textSize="20sp"/>
 
-</FrameLayout>
+        <TextView
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Proyectos"
+            android:paddingBottom="10sp"
+            android:paddingTop="10sp"
+            android:textSize="35sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:textColor="@color/black"
+            android:padding="10sp"
+            android:drawableEnd="@drawable/right"
+            android:layout_marginTop="10sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Agregar proyecto"
+            android:textSize="20sp" />
+        <TextView
+            android:textColor="@color/black"
+            android:padding="10sp"
+            android:drawableEnd="@drawable/right"
+            android:layout_marginTop="10sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ver lista de proyectos"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+</ScrollView>

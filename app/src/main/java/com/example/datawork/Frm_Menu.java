@@ -1,18 +1,17 @@
 package com.example.datawork;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.Toast;
 
 import com.example.datawork.menu.PagTabPadre;
 import com.google.android.material.tabs.TabLayout;
 
-public class Frm_Menu extends AppCompatActivity {
+public class Frm_Menu extends AppCompatActivity implements OnTextViewClickListener {
 
     private TabLayout tabPadre;
     private ViewPager2 vPantalla;
@@ -66,4 +65,17 @@ public class Frm_Menu extends AppCompatActivity {
 
         return super.onKeyDown(keyCode, event);
     }
+
+
+    public void onTextViewClicked(Fragment fragment) {
+        replaceFragment(fragment);
+    }
+
+    public void replaceFragment(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.vPantalla, fragment)
+                .commit();
+    }
+
+
 }

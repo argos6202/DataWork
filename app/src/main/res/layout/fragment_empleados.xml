@@ -27,7 +27,17 @@
                 android:textSize="30sp"
                 android:textStyle="bold"/>
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/vEmpleados"
+            android:foregroundTint="@color/black"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
     </LinearLayout>
 
 </RelativeLayout>

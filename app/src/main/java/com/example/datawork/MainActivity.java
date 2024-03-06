@@ -88,27 +88,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-
-                            Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.desplazamiento_arriba);
-
-                            logo.startAnimation(animation);
-                            txtDataWorks.startAnimation(animation);
-                            txtiniciar.startAnimation(animation);
-                            txtUsuario.startAnimation(animation);
-                            txtContraseña.startAnimation(animation);
-                            btnLogin.startAnimation(animation);
-                            btnRegistrar.startAnimation(animation);
-
-                            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Intent intent = new Intent(MainActivity.this, Frm_Menu.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
-                            }, animation.getDuration());
-
+                            startActivity(new Intent(MainActivity.this,Frm_Menu.class));
+                            finish();
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(MainActivity.this, "Authentication failed." + email + password,
@@ -120,6 +101,9 @@ public class MainActivity extends AppCompatActivity {
     }
     public void OnClick_btnRegistrarse(View v){
         startActivity(new Intent(MainActivity.this,Frm_Registro.class));
+    }
+    public void OnClick_IniciarSesion(View view){
+        startActivity(new Intent(MainActivity.this,Frm_Menu.class));
     }
 
 }
