@@ -3,5 +3,6 @@
     <style name="CircularImageView">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
+        <item name="android:elevation">10dp</item>
     </style>
 </resources>

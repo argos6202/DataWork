@@ -77,9 +77,6 @@ public class FragmentEmpleados extends Fragment {
                 SpannableString Agregar = new SpannableString("Agregar");
                 Agregar.setSpan(new ForegroundColorSpan(Color.BLACK), 0, Agregar.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-                SpannableString Editar = new SpannableString("EDITAR");
-                Editar.setSpan(new ForegroundColorSpan(Color.BLACK), 0, Editar.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
                 AlertDialog alerta = new AlertDialog.Builder(root.getContext())
                         .setTitle(Agregar)
                         .setView(view1)

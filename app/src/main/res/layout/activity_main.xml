@@ -50,7 +50,7 @@
             android:shadowRadius="3"
             android:layout_marginTop="60sp"
             android:textStyle="bold"
-            android:fontFamily="@font/b612_mono"
+            android:fontFamily="@font/roboto_slab"
             android:textColor="@color/black"
             android:gravity="center"
             android:onClick="OnClick_IniciarSesion"
@@ -68,38 +68,51 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/txtUsuario"
+            <com.google.android.material.textfield.TextInputLayout
+                android:fontFamily="@font/roboto_slab"
+                android:alpha="0.9"
+                android:textColorHint="@color/black"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10sp"
-                android:layout_marginTop="40dp"
-                android:drawableLeft="@drawable/usuario"
-                android:drawablePadding="7sp"
-                android:fontFamily="@font/gabriela"
-                android:inputType="textEmailAddress"
                 android:hint="Usuario"
-                android:textColorHint="@color/black"
-                android:textColor="@color/black"
-                android:textSize="30dp" />
+                android:layout_height="match_parent">
 
-            <EditText
-                android:id="@+id/txtcontraseña"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10sp"
-                android:layout_marginTop="20dp"
-                android:drawableLeft="@drawable/candadoo"
-                android:drawablePadding="7sp"
-                android:fontFamily="@font/gabriela"
-                android:inputType="numberPassword"
-                android:hint="Contraseña"
-                android:textColor="@color/black"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtUsuario"
+                    android:inputType="textEmailAddress"
+                    android:drawableLeft="@drawable/usuario"
+                    android:drawablePadding="7sp"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:textSize="30dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/roboto_slab"
+                    android:layout_height="wrap_content"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:fontFamily="@font/roboto_slab"
                 android:textColorHint="@color/black"
-                android:textSize="30dp"/>
+                android:layout_width="match_parent"
+                android:hint="Contraseña"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtcontraseña"
+                    android:inputType="numberPassword"
+                    android:drawableLeft="@drawable/candadoo"
+                    android:drawablePadding="7sp"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:textSize="30dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/roboto_slab"
+                    android:layout_height="wrap_content"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 

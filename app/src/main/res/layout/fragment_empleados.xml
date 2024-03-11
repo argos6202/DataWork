@@ -32,23 +32,34 @@
             android:layout_width="match_parent"
             android:layout_height="20dp"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/vEmpleados"
-            android:foregroundTint="@color/black"
-            android:background="@color/white"
+        <ScrollView
+            android:scrollbarSize="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/vEmpleados"
+                android:foregroundTint="@color/black"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/addEmpleados"
-            app:rippleColor="@color/azul"
-            android:elevation="10sp"
-            app:maxImageSize="40sp"
-            android:layout_width="wrap_content"
-            android:src="@drawable/baseline_add_24"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"/>
+        </ScrollView>
+
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        app:shapeAppearance="@style/CircularImageView"
+        android:id="@+id/addEmpleados"
+        app:rippleColor="@color/white"
+        android:elevation="10sp"
+        app:maxImageSize="40sp"
+        android:layout_width="wrap_content"
+        android:src="@drawable/baseline_add_24"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp" />
 
 </RelativeLayout>

@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private int backPressCount = 0;
     private ImageView logo;
     private TextView txtDataWorks, txtiniciar;
-    private EditText txtUsuario, txtContraseña;
+    private TextInputEditText txtUsuario, txtContraseña;
     private Button btnLogin, btnRegistrar;
     private Handler handler = new Handler(Looper.getMainLooper());
 
@@ -44,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
         logo = (ImageView) findViewById(R.id.logo);
         txtDataWorks = (TextView) findViewById(R.id.txtDataWorks);
         txtiniciar = (TextView) findViewById(R.id.txtiniciar);
-        txtUsuario = (EditText) findViewById(R.id.txtUsuario);
-        txtContraseña = (EditText) findViewById(R.id.txtcontraseña);
+        txtUsuario = (TextInputEditText) findViewById(R.id.txtUsuario);
+        txtContraseña = (TextInputEditText) findViewById(R.id.txtcontraseña);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnRegistrar = (Button) findViewById(R.id.btnRegistrar);
     }

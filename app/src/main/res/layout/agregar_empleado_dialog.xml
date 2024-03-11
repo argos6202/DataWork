@@ -12,7 +12,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/titlelayout"
             android:layout_width="match_parent"
-            android:hint="Ingresa el nombre del empleado"
+            android:hint="Nombre del empleado"
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -23,12 +23,13 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/addNombreEmpleado"
                 android:layout_margin="10sp" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/numberlayout"
             android:layout_width="match_parent"
-            android:hint="Ingresa el número del empleado"
+            android:hint="Número del empleado"
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
