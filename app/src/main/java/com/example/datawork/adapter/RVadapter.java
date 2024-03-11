@@ -20,6 +20,7 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.MyViewHolder> {
     Context ct;
 
     ArrayList<User> list;
+    OnItemClickListener onItemClickListener;
 
     public RVadapter(Context ct, ArrayList<User> list) {
         this.ct = ct;
@@ -39,6 +40,7 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.MyViewHolder> {
         User user = list.get(position);
         holder.nombre.setText(user.getNombre());
         holder.numero.setText(user.getNumero());
+        holder.itemView.setOnClickListener(v -> onItemClickListener.onClick(list.get(position)));
     }
 
     @Override
@@ -51,9 +53,14 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.MyViewHolder> {
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
             nombre = itemView.findViewById(R.id.txtNombreEmpleado);
             numero = itemView.findViewById(R.id.txtNumeroEmpleado);
         }
+    }
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+    public interface OnItemClickListener{
+        void onClick(User user);
     }
 }

@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.example.datawork.menu.PagTabPadre;
 import com.google.android.material.tabs.TabLayout;
 
-public class Frm_Menu extends AppCompatActivity implements OnTextViewClickListener {
+public class Frm_Menu extends AppCompatActivity{
 
     private TabLayout tabPadre;
     private ViewPager2 vPantalla;

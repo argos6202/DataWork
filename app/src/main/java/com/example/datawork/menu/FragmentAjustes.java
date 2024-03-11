@@ -12,11 +12,6 @@ import android.widget.Toast;
 
 import com.example.datawork.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FragmentAjustes#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class FragmentAjustes extends Fragment {
     private Context ct;
 
@@ -35,9 +30,6 @@ public class FragmentAjustes extends Fragment {
     }
 
 
-    public void onTextViewClick() {
-        // Código a ejecutar al hacer clic en el TextView
-    }
 
     public void getToast(String men){
         Toast.makeText(ct,men,Toast.LENGTH_SHORT).show();

@@ -18,10 +18,8 @@ import android.widget.Toast;
 
 import com.example.datawork.Frm_Registro;
 import com.example.datawork.MainActivity;
-import com.example.datawork.OnTextViewClickListener;
 import com.example.datawork.R;
 public class FragmentInicio extends Fragment {
-    private OnTextViewClickListener mListener;
     private TextView textView;
 
     /*@Override
