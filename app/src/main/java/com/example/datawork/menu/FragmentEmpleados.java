@@ -3,6 +3,8 @@ package com.example.datawork.menu;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,8 +73,15 @@ public class FragmentEmpleados extends Fragment {
                 nombre = view1.findViewById(R.id.addNombreEmpleado);
                 numero = view1.findViewById(R.id.addNumeroEmpleado);
 
+                //TITULO DEL DIALOGO PERSONALIZADO
+                SpannableString Agregar = new SpannableString("Agregar");
+                Agregar.setSpan(new ForegroundColorSpan(Color.BLACK), 0, Agregar.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                SpannableString Editar = new SpannableString("EDITAR");
+                Editar.setSpan(new ForegroundColorSpan(Color.BLACK), 0, Editar.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
                 AlertDialog alerta = new AlertDialog.Builder(root.getContext())
-                        .setTitle("Agregar")
+                        .setTitle(Agregar)
                         .setView(view1)
                         .setPositiveButton("Agregar Empleado", new DialogInterface.OnClickListener() {
                             @Override
@@ -106,9 +118,12 @@ public class FragmentEmpleados extends Fragment {
                             }
                         })
                         .create();
+                alerta.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
                 alerta.show();
             }
         });
+
+
 
         RecyclerView recyclerView1 = root.findViewById(R.id.vEmpleados);
         db = FirebaseDatabase.getInstance().getReference("Users");
@@ -137,8 +152,13 @@ public class FragmentEmpleados extends Fragment {
 
                 ms = new Mensaje(root.getContext());
 
+                //TEXTO PERSONALIZADO TITULO DIALOGO
+                SpannableString Editar = new SpannableString("EDITAR");
+                Editar.setSpan(new ForegroundColorSpan(Color.BLACK), 0, Editar.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+
                 AlertDialog alert = new AlertDialog.Builder(root.getContext())
-                        .setTitle("Editar")
+                        .setTitle(Editar)
                         .setView(view)
                         .setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
                             @Override
@@ -193,6 +213,7 @@ public class FragmentEmpleados extends Fragment {
                                         });
                             }
                         }).create();
+                alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
                 alert.show();
             }
         });
@@ -202,6 +223,7 @@ public class FragmentEmpleados extends Fragment {
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     User user = dataSnapshot.getValue(User.class);
