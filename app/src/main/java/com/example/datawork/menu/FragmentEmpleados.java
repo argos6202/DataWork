@@ -12,8 +12,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -89,6 +91,10 @@ public class FragmentEmpleados extends Fragment {
                                     titlelayout.setError("Debes llenar este campo");
                                 } else if (numero.getText().toString().isEmpty()){
                                     numberlayout.setError("Debes llenar este campo");
+                                } else if (!numero.getText().toString().startsWith("9")) {
+                                    numberlayout.setError("El número debe comenzar con 9");
+                                } else if (numero.getText().toString().length() != 9) {
+                                    numberlayout.setError("El número debe tener 9 dígitos");
                                 } else {
                                     ms.MProgressBarDato();
                                     User user = new User();
@@ -118,6 +124,32 @@ public class FragmentEmpleados extends Fragment {
                         })
                         .create();
                 alerta.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+
+                //VALIDACIÓN CARACTERES
+                numero.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                        // No se necesita implementar este método
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        // No se necesita implementar este método
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        String numeroIngresado = s.toString();
+                        if (!numeroIngresado.startsWith("9")) {
+                            numberlayout.setError("El número debe comenzar con 9XX XXX XXX");
+                        } else if (numeroIngresado.length() != 9) {
+                            numberlayout.setError("El número debe tener 9 dígitos");
+                        } else {
+                            numberlayout.setError(null);
+                        }
+                    }
+                });
+
                 alerta.show();
             }
         });

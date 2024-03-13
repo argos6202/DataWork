@@ -11,8 +11,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -230,6 +232,27 @@ public class FragmentPagos extends Fragment {
                             }
                         }).create();
                 editarEmpleado.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+                pay.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                        // No se necesita implementar este método
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        // No se necesita implementar este método
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        String numeroIngresado = s.toString();
+                        if (numeroIngresado.isEmpty()){
+                            pagoLayout.setError("Llena este campo por favor");
+                        } else {
+                            pagoLayout.setError(null);
+                        }
+                    }
+                });
                 editarEmpleado.show();
             }
         });
