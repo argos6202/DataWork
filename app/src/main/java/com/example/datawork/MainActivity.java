@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.datawork.util.Mensaje;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -31,6 +32,7 @@ import java.text.DecimalFormat;
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     private int backPressCount = 0;
+    private Mensaje ms;
     private ImageView logo;
     private TextView txtDataWorks, txtiniciar;
     private TextInputEditText txtUsuario, txtContraseña;
@@ -74,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void OnClick_btnEntrar(View v){
 
+        ms = new Mensaje(this);
+
         String email, password;
         email = txtUsuario.getText().toString();
         password = txtContraseña.getText().toString();
@@ -86,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this,"Ingresa tu contraseña",Toast.LENGTH_LONG).show();
             return;
         }
+        ms.MProgressBarDato();
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -93,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             startActivity(new Intent(MainActivity.this,Frm_Menu.class));
+                            ms.MCloseProgBar(true);
                             finish();
                         } else {
                             // If sign in fails, display a message to the user.

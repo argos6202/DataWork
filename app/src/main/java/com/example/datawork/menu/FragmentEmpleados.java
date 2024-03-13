@@ -51,6 +51,10 @@ public class FragmentEmpleados extends Fragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_empleados, container, false);
 
+        //INICIAIZAS EL MENSAJE DE CARGA AQUÍ PARA EL LLENADO DEL RECYCLERVIEW
+        //TAMBIÉN DEBE DECLARARSE COMO VARIABLE EN EL INICIO
+        ms = new Mensaje(root.getContext());
+
         FirebaseApp.initializeApp(root.getContext());
         FirebaseDatabase databaseInsert = FirebaseDatabase.getInstance();
 
@@ -117,8 +121,6 @@ public class FragmentEmpleados extends Fragment {
                 alerta.show();
             }
         });
-
-
 
         RecyclerView recyclerView1 = root.findViewById(R.id.vEmpleados);
         db = FirebaseDatabase.getInstance().getReference("Users");
@@ -222,6 +224,9 @@ public class FragmentEmpleados extends Fragment {
 
         recyclerView1.setAdapter(adapter);
 
+        //COMIENZA EL DIALOGO DE CARGA HASTA QUE SE LLENE EL RECYCLER
+        ms.MProgressBarDato();
+
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -232,12 +237,14 @@ public class FragmentEmpleados extends Fragment {
                     Objects.requireNonNull(user).setKey(dataSnapshot.getKey());
                     list.add(user);
                 }
+                //CIERRA DIALOGO DE CARGA
+                ms.MCloseProgBar(true);
                 adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                ms.MCloseProgBar(true);
             }
         });
 

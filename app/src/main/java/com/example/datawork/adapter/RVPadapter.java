@@ -48,6 +48,7 @@ public class RVPadapter extends RecyclerView.Adapter<RVPadapter.ViewHolder> {
         return listpagos.size();
     }
 
+    //Este extend se pone primero que el del principio
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView nombreLayout, pagoLayout;
         public ViewHolder(@NonNull View itemView) {
