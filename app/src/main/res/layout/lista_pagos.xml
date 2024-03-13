@@ -8,8 +8,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    app:cardCornerRadius="10dp"
-    app:elevation="2dp">
+    android:elevation="20sp"
+    app:cardCornerRadius="10dp">
 
     <LinearLayout
         android:padding="16dp"
@@ -22,7 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/txtNombreEmpleado"
+                android:fontFamily="@font/roboto_slab"
+                android:id="@+id/txtNombrePago"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -31,6 +32,7 @@
                 android:hint="Nombres y apellidos" />
 
             <TextView
+                android:fontFamily="@font/roboto_slab"
                 android:id="@+id/txtMontoPagado"
                 android:textSize="16sp"
                 android:textColor="@color/user"
@@ -44,6 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <com.google.android.material.button.MaterialButton
+                app:rippleColor="@color/azul"
                 android:text="Ver"
                 android:textColor="@color/black"
                 android:backgroundTint="@color/gris"

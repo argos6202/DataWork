@@ -26,6 +26,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.text.DecimalFormat;
+
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     private int backPressCount = 0;
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnRegistrar = (Button) findViewById(R.id.btnRegistrar);
     }
+
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

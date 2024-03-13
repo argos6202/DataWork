@@ -1,4 +1,4 @@
-package com.example.datawork.menu;
+package com.example.datawork.adapter;
 
 import android.os.Bundle;
 
@@ -15,6 +15,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.datawork.R;
+import com.example.datawork.menu.FragmentAjustes;
+import com.example.datawork.menu.FragmentEmpleados;
+import com.example.datawork.menu.FragmentInicio;
+import com.example.datawork.menu.FragmentPagos;
 
 public class PagTabPadre extends FragmentStateAdapter {
 
@@ -24,8 +28,6 @@ public class PagTabPadre extends FragmentStateAdapter {
         super(fragmentManager, lifecycle);
         this.numftab = numftab;
     }
-
-
 
     @NonNull
     @Override

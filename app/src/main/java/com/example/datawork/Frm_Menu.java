@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
-import com.example.datawork.menu.PagTabPadre;
+import com.example.datawork.adapter.PagTabPadre;
 import com.google.android.material.tabs.TabLayout;
 
 public class Frm_Menu extends AppCompatActivity{
@@ -23,6 +23,7 @@ public class Frm_Menu extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frm_menu);
+
         tabPadre = (TabLayout) findViewById(R.id.menu);
         vPantalla = (ViewPager2) findViewById(R.id.vPantalla);
 

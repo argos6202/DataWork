@@ -40,8 +40,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class FragmentEmpleados extends Fragment {
-
-    private RecyclerView recyclerView;
     private Mensaje ms;
     DatabaseReference db;
     RVadapter adapter;
@@ -169,7 +167,10 @@ public class FragmentEmpleados extends Fragment {
                                     User user1 = new User();
                                     user1.setNombre(nombre.getText().toString());
                                     user1.setNumero(numero.getText().toString());
-                                    databaseInsert.getReference().child("Users").child(user.getKey()).setValue(user1).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    databaseInsert.getReference().child("Users")
+                                            .child(user.getKey())
+                                            .setValue(user1)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
                                             ms.MCloseProgBar(true);
@@ -195,7 +196,11 @@ public class FragmentEmpleados extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 ms.MProgressBarDato();
-                                databaseInsert.getReference().child("Users").child(user.getKey()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                databaseInsert.getReference()
+                                        .child("Users")
+                                        .child(user.getKey())
+                                        .removeValue()
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
                                         ms.MCloseProgBar(true);

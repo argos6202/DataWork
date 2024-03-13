@@ -49,5 +49,6 @@
             android:layout_height="wrap_content"
             android:text="Ajustes"
             android:icon="@drawable/settings"/>
+
     </com.google.android.material.tabs.TabLayout>
 </RelativeLayout>
