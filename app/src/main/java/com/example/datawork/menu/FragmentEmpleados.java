@@ -249,6 +249,30 @@ public class FragmentEmpleados extends Fragment {
                                         });
                             }
                         }).create();
+
+                numero.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                        // No se necesita implementar este método
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        // No se necesita implementar este método
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        String numeroIngresado = s.toString();
+                        if (!numeroIngresado.startsWith("9")) {
+                            numberlayout.setError("El número debe comenzar con 9XX XXX XXX");
+                        } else if (numeroIngresado.length() != 9) {
+                            numberlayout.setError("El número debe tener 9 dígitos");
+                        } else {
+                            numberlayout.setError(null);
+                        }
+                    }
+                });
                 alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
                 alert.show();
             }

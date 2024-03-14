@@ -3,128 +3,176 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".menu.FragmentInicio">
-
-    <LinearLayout
-        android:paddingTop="40sp"
-        android:paddingLeft="20sp"
-        android:paddingRight="20sp"
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:textColor="@color/black"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="MENU DE OPCIONES"
-            android:paddingBottom="10sp"
-            android:textSize="35sp"
-            android:textStyle="bold"/>
-        <TextView
-            android:id="@+id/MnuPagosRealizados"
-            android:textColor="@color/black"
-            android:padding="10sp"
-            android:drawableEnd="@drawable/right"
-            android:layout_marginTop="10sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Pagos realizados"
-            android:textSize="20sp" />
-        <TextView
-            android:textColor="@color/black"
-            android:padding="10sp"
-            android:drawableEnd="@drawable/right"
-            android:layout_marginTop="10sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Pagos faltantes"
-            android:background="@drawable/background_selector"
-            android:textSize="20sp"
-            android:onClick="pagos"/>
-        <TextView
-            android:textColor="@color/black"
-            android:padding="10sp"
-            android:drawableEnd="@drawable/right"
-            android:layout_marginTop="10sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Registro de pagos"
-            android:background="@drawable/background_selector"
-            android:textSize="20sp"/>
-        <TextView
-            android:textColor="@color/black"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Personal"
-            android:paddingBottom="10sp"
-            android:paddingTop="10sp"
-            android:textSize="35sp"
-            android:textStyle="bold"/>
-        <TextView
-            android:textColor="@color/black"
-            android:padding="10sp"
-            android:drawableEnd="@drawable/right"
-            android:layout_marginTop="10sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Agregar trabajador"
-            android:textSize="20sp" />
-        <TextView
-            android:textColor="@color/black"
-            android:padding="10sp"
-            android:drawableEnd="@drawable/right"
-            android:layout_marginTop="10sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Dar de baja"
-            android:textSize="20sp"/>
-        <TextView
-            android:textColor="@color/black"
-            android:padding="10sp"
-            android:drawableEnd="@drawable/right"
-            android:layout_marginTop="10sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Editar datos trabajador"
-            android:textSize="20sp"/>
-        <TextView
-            android:textColor="@color/black"
-            android:padding="10sp"
-            android:drawableEnd="@drawable/right"
-            android:layout_marginTop="10sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Observaciones"
-            android:textSize="20sp"/>
+        android:layout_height="match_parent">
 
-        <TextView
-            android:textColor="@color/black"
+        <FrameLayout
+            android:id="@+id/reemplazarlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Proyectos"
-            android:paddingBottom="10sp"
-            android:paddingTop="10sp"
-            android:textSize="35sp"
-            android:textStyle="bold"/>
-        <TextView
-            android:textColor="@color/black"
-            android:padding="10sp"
-            android:drawableEnd="@drawable/right"
-            android:layout_marginTop="10sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Agregar proyecto"
-            android:textSize="20sp" />
-        <TextView
-            android:textColor="@color/black"
-            android:padding="10sp"
-            android:drawableEnd="@drawable/right"
-            android:layout_marginTop="10sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ver lista de proyectos"
-            android:textSize="20sp"/>
+            android:orientation="vertical"
+            android:paddingLeft="20sp"
+            android:paddingTop="40sp"
+            android:paddingRight="20sp">
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10sp"
+                    android:text="MENU DE OPCIONES"
+                    android:textColor="@color/black"
+                    android:textSize="35sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/MnuPagosRealizados"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:drawableEnd="@drawable/right"
+                    android:padding="10sp"
+                    android:text="Pagos realizados"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:background="@drawable/background_selector"
+                    android:drawableEnd="@drawable/right"
+                    android:padding="10sp"
+                    android:text="Pagos faltantes"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:background="@drawable/background_selector"
+                    android:drawableEnd="@drawable/right"
+                    android:padding="10sp"
+                    android:text="Registro de pagos"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10sp"
+                    android:paddingBottom="10sp"
+                    android:text="Personal"
+                    android:textColor="@color/black"
+                    android:textSize="35sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:drawableEnd="@drawable/right"
+                    android:padding="10sp"
+                    android:text="Agregar trabajador"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:drawableEnd="@drawable/right"
+                    android:padding="10sp"
+                    android:text="Dar de baja"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:drawableEnd="@drawable/right"
+                    android:padding="10sp"
+                    android:text="Editar datos trabajador"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:drawableEnd="@drawable/right"
+                    android:padding="10sp"
+                    android:text="Observaciones"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10sp"
+                    android:paddingBottom="10sp"
+                    android:text="Proyectos"
+                    android:textColor="@color/black"
+                    android:textSize="35sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:drawableEnd="@drawable/right"
+                    android:padding="10sp"
+                    android:text="Agregar proyecto"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:drawableEnd="@drawable/right"
+                    android:padding="10sp"
+                    android:text="Ver lista de proyectos"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <FrameLayout
+            android:visibility="invisible"
+            android:id="@+id/btnRegresar"
+            android:padding="15sp"
+            android:layout_marginLeft="10sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingfRegresar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:rippleColor="@color/azul"
+                android:src="@drawable/regresar"
+                app:shapeAppearance="@style/CircularImageView"
+                />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_below="@id/btnRegresar"
+            android:id="@+id/mostrarlayour"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </FrameLayout>
+
+    </RelativeLayout>
+
+
 
 </ScrollView>
