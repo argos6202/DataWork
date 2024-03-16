@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/fondo1"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     tools:context=".MainActivity">
 
 
@@ -15,6 +15,16 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="15dp">
+
+        <TextView
+            android:layout_marginBottom="-30sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:id="@+id/textViewTemperatura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -45,12 +55,12 @@
             android:text="Iniciar Sesión"
             android:background="@drawable/background_selector"
             android:shadowDx="3"
-            android:shadowDy="10"
+            android:shadowDy="5"
             android:shadowColor="@color/gris"
             android:shadowRadius="3"
             android:layout_marginTop="60sp"
             android:textStyle="bold"
-            android:fontFamily="@font/roboto_slab"
+            android:fontFamily="@font/sfblack"
             android:textColor="@color/black"
             android:gravity="center"
             android:onClick="OnClick_IniciarSesion"
@@ -87,7 +97,6 @@
                     android:layout_width="match_parent"
                     android:textSize="30dp"
                     android:layout_marginTop="20dp"
-                    android:fontFamily="@font/roboto_slab"
                     android:layout_height="wrap_content"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -109,7 +118,6 @@
                     android:layout_width="match_parent"
                     android:textSize="30dp"
                     android:layout_marginTop="20dp"
-                    android:fontFamily="@font/roboto_slab"
                     android:layout_height="wrap_content"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -126,17 +134,14 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLogin"
+                android:fontFamily="@font/sfblack"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:backgroundTint="@color/azul"
-                android:textColor="@color/white"
-                android:shadowColor="#000000"
-                android:shadowDx="5"
-                android:shadowDy="5"
+                android:backgroundTint="@color/btn"
+                android:textColor="@color/black"
                 android:shadowRadius="10"
                 android:text="Entrar"
                 app:cornerRadius="40dp"
-                android:alpha="0.8"
                 android:onClick="OnClick_btnEntrar"/>
 
         </LinearLayout>
@@ -145,19 +150,15 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnRegistrar"
+        android:fontFamily="@font/sfblack"
         android:layout_width="200sp"
         android:layout_height="50dp"
         android:layout_below="@id/content"
         android:layout_marginLeft="-50sp"
-        android:backgroundTint="@color/azul"
-        android:shadowColor="#000000"
-        android:shadowDx="5"
-        android:shadowDy="5"
-        android:shadowRadius="10"
+        android:backgroundTint="@color/btn"
         android:text="Registrarse"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         app:cornerRadius="40dp"
-        android:alpha="0.8"
         android:onClick="OnClick_btnRegistrarse"/>
 
 </RelativeLayout>

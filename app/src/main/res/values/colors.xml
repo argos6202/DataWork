@@ -3,9 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="azul">#6200EE</color>
-    <color name="gris">#B8BDC3</color>
+    <color name="gris">#676262</color>
     <color name="user">#FF9800</color>
-    <color name="btn">#E4DBCE</color>
+    <color name="btn">#C7C7CC</color>
 
     <!-- Colores -->
     <color name="colorPrimary">#6200EE</color> <!-- Color principal -->

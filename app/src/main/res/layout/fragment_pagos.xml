@@ -13,20 +13,41 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:text="Pagos"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:padding="15sp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:fontFamily="@font/sfblack"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:gravity="start"
+                android:text="Pagos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/btnImprimir"
+                android:fontFamily="@font/sfblack"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:gravity="right"
+                android:text="Imprimir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
         <TextView
+            android:fontFamily="@font/sfblack"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="25sp"
             android:text="Registro de pagos"
-            android:layout_marginTop="20sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <View

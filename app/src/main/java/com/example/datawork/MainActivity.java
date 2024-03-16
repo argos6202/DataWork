@@ -19,6 +19,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.datawork.util.Mensaje;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,13 +33,22 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
+
+    private RequestQueue requestQueue;
+    private static final String API_URL = "https://api.openweathermap.org/data/2.5/weather?q=Lima&appid=301d7dc2188e2532dad24881f5e0e283&units=metric\"c";
+
     FirebaseAuth mAuth;
     private int backPressCount = 0;
     private Mensaje ms;
     private ImageView logo;
+    private TextView textViewTemperatura;
     private TextView txtDataWorks, txtiniciar;
     private TextInputEditText txtUsuario, txtContraseña;
     private Button btnLogin, btnRegistrar;
@@ -46,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         logo = (ImageView) findViewById(R.id.logo);
+        textViewTemperatura = findViewById(R.id.textViewTemperatura);
         txtDataWorks = (TextView) findViewById(R.id.txtDataWorks);
         txtiniciar = (TextView) findViewById(R.id.txtiniciar);
         txtUsuario = (TextInputEditText) findViewById(R.id.txtUsuario);
@@ -53,9 +69,53 @@ public class MainActivity extends AppCompatActivity {
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnRegistrar = (Button) findViewById(R.id.btnRegistrar);
 
+        requestQueue = Volley.newRequestQueue(this);
+
+        obtenerTemperatura();
         validacionOnTime();
     }
 
+    private void obtenerTemperatura() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request
+                .Method.GET, API_URL, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            // Obtiene la matriz "weather" del objeto JSON de respuesta
+                            JSONArray weatherArray = response.getJSONArray("weather");
+
+                            // Obtiene el primer objeto JSON de la matriz "weather"
+                            JSONObject weatherObject = weatherArray.getJSONObject(0);
+
+                            // Obtiene la descripción del clima del objeto "weather"
+                            String descripcionClima = weatherObject.getString("description");
+
+                            // Obtiene la temperatura en Kelvin del objeto "main"
+                            JSONObject mainObject = response.getJSONObject("main");
+                            double temperaturaKelvin = mainObject.getDouble("temp");
+
+                            // Convierte la temperatura de Kelvin a Celsius
+                            double temperaturaCelsius = temperaturaKelvin - 273.15;
+
+                            // Muestra la temperatura en Celsius en el TextView
+                            textViewTemperatura.setText("Clima hoy: " +descripcionClima + String.format("\n%.1f °C", temperaturaCelsius));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                });
+        // Agrega la solicitud a la cola de solicitudes
+        requestQueue.add(jsonObjectRequest);
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

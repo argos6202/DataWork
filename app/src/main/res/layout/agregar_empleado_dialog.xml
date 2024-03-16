@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
+        android:background="@drawable/logo"
         android:paddingTop="5sp"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -11,6 +12,7 @@
         
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/titlelayout"
+            android:textColorHint="@color/gris"
             android:layout_width="match_parent"
             android:hint="Nombre del empleado"
             android:layout_height="wrap_content">
@@ -28,6 +30,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/numberlayout"
+            android:textColorHint="@color/gris"
             android:layout_width="match_parent"
             android:hint="Número del empleado"
             android:layout_height="wrap_content">
@@ -42,8 +45,21 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/dniLayout"
+            android:textColorHint="@color/gris"
+            android:layout_width="match_parent"
+            android:hint="DNI empleado"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/addDniEmpleado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10sp"
+                android:fontFamily="@font/roboto_slab"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
-
-
 </RelativeLayout>

@@ -22,150 +22,171 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/header_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/txtUsuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ana María"
+                        android:textColor="@color/black"
+                        android:textSize="30sp"
+                        android:fontFamily="@font/sfblack"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="20sp"
+                    android:orientation="vertical"
+                    android:id="@+id/InfoUsuario"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:src="@drawable/mujer"
+                        app:shapeAppearanceOverlay="@style/CircularImageView"/>
+                    <TextView
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        android:id="@+id/txtNombreUsuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ana María"
+                        android:textSize="25sp"
+                        android:textStyle="bold"/>
 
-                <TextView
+                    <TextView
+                        android:textColor="@color/user"
+                        android:gravity="center"
+                        android:id="@+id/txtuser"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ana_maria"
+                        android:textSize="15sp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="20sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="10sp"
-                    android:text="MENU DE OPCIONES"
-                    android:textColor="@color/black"
-                    android:textSize="35sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical">
+                    <TextView
+                        android:fontFamily="@font/sfblack"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Funciones rápidas"
+                        android:textSize="27sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/generarNomina"
+                        android:background="@drawable/background_selector"
+                        android:textColor="@color/black"
+                        android:padding="10sp"
+                        android:drawableEnd="@drawable/right"
+                        android:layout_marginTop="10sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Generar nómina"
+                        android:onClick="@{FragmentInicio.onTextViewClick}"
+                        android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/ejecutarPagos"
+                        android:textColor="@color/black"
+                        android:padding="10sp"
+                        android:drawableEnd="@drawable/right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ejecutar pagos"
+                        android:textSize="20sp"/>
 
-                <TextView
-                    android:id="@+id/MnuPagosRealizados"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10sp"
-                    android:drawableEnd="@drawable/right"
-                    android:padding="10sp"
-                    android:text="Pagos realizados"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="10sp"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10sp"
-                    android:background="@drawable/background_selector"
-                    android:drawableEnd="@drawable/right"
-                    android:padding="10sp"
-                    android:text="Pagos faltantes"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    <TextView
+                        android:fontFamily="@font/sfblack"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Informes y herramientas"
+                        android:textSize="27sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/hacerInforme"
+                        android:textColor="@color/black"
+                        android:padding="10sp"
+                        android:drawableEnd="@drawable/right"
+                        android:layout_marginTop="10sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Hacer un informe"
+                        android:textSize="20sp"/>
+                    <TextView
+                        android:id="@+id/verResultados"
+                        android:textColor="@color/black"
+                        android:padding="10sp"
+                        android:drawableEnd="@drawable/right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ver resultados"
+                        android:textSize="20sp"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="10sp"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10sp"
-                    android:background="@drawable/background_selector"
-                    android:drawableEnd="@drawable/right"
-                    android:padding="10sp"
-                    android:text="Registro de pagos"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    <TextView
+                        android:fontFamily="@font/sfblack"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Métodos de pago"
+                        android:textSize="27sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/cciTrabajadores"
+                        android:textColor="@color/black"
+                        android:padding="10sp"
+                        android:drawableEnd="@drawable/right"
+                        android:layout_marginTop="10sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="CCI trabajadores"
+                        android:textSize="20sp"/>
+                    <TextView
+                        android:id="@+id/numerosYape"
+                        android:textColor="@color/black"
+                        android:padding="10sp"
+                        android:drawableEnd="@drawable/right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Numeros de yape"
+                        android:textSize="20sp"/>
+                </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="10sp"
-                    android:paddingBottom="10sp"
-                    android:text="Personal"
-                    android:textColor="@color/black"
-                    android:textSize="35sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10sp"
-                    android:drawableEnd="@drawable/right"
-                    android:padding="10sp"
-                    android:text="Agregar trabajador"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10sp"
-                    android:drawableEnd="@drawable/right"
-                    android:padding="10sp"
-                    android:text="Dar de baja"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10sp"
-                    android:drawableEnd="@drawable/right"
-                    android:padding="10sp"
-                    android:text="Editar datos trabajador"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10sp"
-                    android:drawableEnd="@drawable/right"
-                    android:padding="10sp"
-                    android:text="Observaciones"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="10sp"
-                    android:paddingBottom="10sp"
-                    android:text="Proyectos"
-                    android:textColor="@color/black"
-                    android:textSize="35sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10sp"
-                    android:drawableEnd="@drawable/right"
-                    android:padding="10sp"
-                    android:text="Agregar proyecto"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10sp"
-                    android:drawableEnd="@drawable/right"
-                    android:padding="10sp"
-                    android:text="Ver lista de proyectos"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
             </LinearLayout>
         </FrameLayout>
 
         <FrameLayout
             android:visibility="invisible"
-            android:id="@+id/btnRegresar"
-            android:padding="15sp"
+            android:id="@+id/layoutRegresar"
+            android:padding="10sp"
             android:layout_marginLeft="10sp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/floatingfRegresar"
+            <ImageView
+                android:padding="8sp"
+                android:id="@+id/txtRegresar"
+                android:layout_marginTop="5sp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:rippleColor="@color/azul"
                 android:src="@drawable/regresar"
-                app:shapeAppearance="@style/CircularImageView"
-                />
+                android:layout_height="wrap_content"/>
         </FrameLayout>
 
         <FrameLayout
-            android:layout_below="@id/btnRegresar"
+            android:layout_below="@id/layoutRegresar"
             android:id="@+id/mostrarlayour"
             android:layout_width="match_parent"
             android:layout_height="match_parent">

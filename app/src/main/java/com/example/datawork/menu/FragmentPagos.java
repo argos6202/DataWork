@@ -37,11 +37,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Workbook;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class FragmentPagos extends Fragment {
     private Mensaje ms;
+
+    Workbook workbook = new HSSFWorkbook();
     DatabaseReference databaseReference;
     RVPadapter adaptadorPagos;
     ArrayList<Pagos> listaPagos;
@@ -292,5 +301,14 @@ public class FragmentPagos extends Fragment {
             pagoLayout.setError("Formato de pago inválido");
             return Double.NaN; // Or a suitable default value
         }
+    }
+
+    public void imprimirPagos(){
+        Workbook workbook = new HSSFWorkbook();
+
+        Cell cell = null;
+        CellStyle cellStyle1= workbook.createCellStyle();
+        cellStyle1.setFillForegroundColor(HSSFColor.HSSFColorPredefined.LIGHT_BLUE.getIndex());
+        //cellStyle1.setFillPattern();
     }
 }

@@ -15,6 +15,7 @@
         android:paddingBottom="8dp">
 
         <com.google.android.material.textfield.TextInputLayout
+            android:textColorHint="@color/gris"
             android:id="@+id/titulolayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,7 +33,57 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Spinner
+                android:id="@+id/comboBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"/>
+        </LinearLayout>
+
+
         <com.google.android.material.textfield.TextInputLayout
+            android:textColorHint="@color/gris"
+            android:id="@+id/horasLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Horas trabajadas">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/horasTrabajadas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:fontFamily="@font/roboto_slab"
+                android:textColor="@color/black"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:textColorHint="@color/gris"
+            android:id="@+id/totalPago"
+            android:hint="Aquí aparecerá el total a pagar"
+            android:editable="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:fontFamily="@font/roboto_slab"
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:textColorHint="@color/gris"
             android:id="@+id/pagoLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
