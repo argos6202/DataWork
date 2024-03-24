@@ -54,7 +54,7 @@
             android:id="@+id/horasLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Horas trabajadas">
+            android:hint="Días trabajados">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/horasTrabajadas"
@@ -100,6 +100,14 @@
                 android:layout_marginBottom="8dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:spinnerMode="dialog"
+            android:background="@android:color/transparent"
+            android:id="@+id/app"
+            android:padding="10sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 

@@ -43,6 +43,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/contador"
             android:fontFamily="@font/sfblack"
             android:textColor="@color/black"
             android:textStyle="bold"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:backgroundTint="@color/white"
@@ -12,17 +12,27 @@
     app:cardCornerRadius="10dp">
 
     <LinearLayout
-        android:padding="16dp"
+        android:id="@+id/last"
+        android:paddingBottom="16dp"
+        android:paddingRight="16dp"
+        android:paddingLeft="8dp"
+        android:paddingTop="16dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:paddingRight="3sp"
+            android:src="@drawable/check1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
-                android:fontFamily="@font/roboto_slab"
                 android:id="@+id/txtNombrePago"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -33,27 +43,32 @@
 
             <TextView
                 android:fontFamily="@font/roboto_slab"
-                android:id="@+id/txtMontoPagado"
                 android:textSize="16sp"
-                android:textColor="@color/user"
+                android:text="15/04"
+                android:textColor="@color/gris"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Monto pagado" />
+                android:hint="Fecha" />
         </LinearLayout>
-
         <LinearLayout
             android:gravity="end"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <com.google.android.material.button.MaterialButton
-                app:rippleColor="@color/azul"
-                android:text="Ver"
-                android:textColor="@color/black"
-                android:backgroundTint="@color/btn"
+            <TextView
+                android:id="@+id/txtMontoPagado"
+                android:gravity="center"
+                android:textColor="@color/rojo"
+                android:hint="Monto"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"/>
+
         </LinearLayout>
 
     </LinearLayout>
+    <View
+        android:layout_below="@id/last"
+        android:background="@color/gris"
+        android:layout_width="wrap_content"
+        android:layout_height="2sp"/>
 
-</androidx.cardview.widget.CardView>
+</RelativeLayout>

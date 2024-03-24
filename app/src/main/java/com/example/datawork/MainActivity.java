@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -13,9 +15,12 @@ import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.util.Patterns;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +43,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -53,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     private TextInputEditText txtUsuario, txtContraseña;
     private Button btnLogin, btnRegistrar;
     private Handler handler = new Handler(Looper.getMainLooper());
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +80,60 @@ public class MainActivity extends AppCompatActivity {
 
         obtenerTemperatura();
         validacionOnTime();
+
+        Spinner app;
+        app = this.findViewById(R.id.appq);
+
+        String[] datos = {"","Yape", "BBVA", "BCP"};
+
+        adapter = new ArrayAdapter<>(this, R.layout.simple_spinner, datos);
+        adapter.setDropDownViewResource(R.layout.drop_spinner);
+        app.setAdapter(adapter);
+
+        btnRegistrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String selectedAppName = app.getSelectedItem().toString();
+                if (!selectedAppName.isEmpty()) {
+                    String packageName = getPackageFromAppName(selectedAppName);
+                    if (packageName != null) {
+                        Intent launchIntent = getPackageManager().getLaunchIntentForPackage(packageName);
+                        if (launchIntent != null) {
+                            startActivity(launchIntent);
+                            Toast.makeText(getApplicationContext(), "Se encontró la app: " + packageName, Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "No se pudo abrir la aplicación", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(getApplicationContext(), "No se encontró la aplicación", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Por favor selecciona una aplicación", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        /*app.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
+                String selectedAppName = parent.getItemAtPosition(position).toString();
+                String packageName = getPackageFromAppName(selectedAppName);
+                if (packageName != null) {
+                    Intent launchIntent = getPackageManager().getLaunchIntentForPackage(packageName);
+                    if (launchIntent != null) {
+                        startActivity(launchIntent);
+                        Toast.makeText(getApplicationContext(), "Se encontró la app: " + packageName, Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "No se pudo abrir la aplicación", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });*/
+
     }
 
     private void obtenerTemperatura() {
@@ -187,7 +248,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                // Validar el correo electrónico en tiempo real
                 if (!isValidEmail(s.toString())) {
                     txtUsuario.setError("Correo electrónico inválido");
                 } else {
@@ -228,11 +288,47 @@ public class MainActivity extends AppCompatActivity {
     private boolean isValidPassword(String password) {
         return password.length() >= 6; //mínimo 6 caracteres
     }
-    public void OnClick_btnRegistrarse(View v){
-        startActivity(new Intent(MainActivity.this,Frm_Registro.class));
-    }
+    /*public void OnClick_btnRegistrarse(View v){
+
+        Spinner app;
+        app = this.findViewById(R.id.app);
+
+        String[] datos = {"Yape", "BBVA", "BCP"};
+
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, datos);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        app.setAdapter(adapter);
+
+        String packageName = getPackageFromAppName(app.getText().toString().trim());
+        if (packageName != null) {
+            // Haz algo con el nombre del paquete, como iniciar la aplicación
+            Intent launchIntent = this.getPackageManager().getLaunchIntentForPackage(packageName);
+            if (launchIntent != null) {
+                startActivity(launchIntent);
+                Toast.makeText(this, "Se encontró " + packageName, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "No se pudo abrir la aplicación", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            // No se encontró el nombre de la aplicación en las aplicaciones instaladas
+            Toast.makeText(this, "No se encontró la aplicación", Toast.LENGTH_SHORT).show();
+        }
+    }*/
+
     public void OnClick_IniciarSesion(View view){
         startActivity(new Intent(MainActivity.this,Frm_Menu.class));
     }
 
+    public String getPackageFromAppName(String appName) {
+        PackageManager pm = this.getPackageManager();
+        Intent intent = new Intent(Intent.ACTION_MAIN, null);
+        intent.addCategory(Intent.CATEGORY_LAUNCHER);
+        List<ResolveInfo> apps = pm.queryIntentActivities(intent, 0);
+        for (ResolveInfo info : apps) {
+            if (info.loadLabel(pm).toString().equalsIgnoreCase(appName)) {
+                return info.activityInfo.packageName;
+            }
+        }
+        return null;
+    }
 }

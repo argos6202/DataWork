@@ -122,6 +122,14 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:spinnerMode="dialog"
+                android:background="@android:color/transparent"
+                android:id="@+id/appq"
+                android:padding="10sp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
         </LinearLayout>
 
         <LinearLayout

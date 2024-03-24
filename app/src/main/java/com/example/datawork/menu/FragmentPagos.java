@@ -1,7 +1,11 @@
 package com.example.datawork.menu;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -16,9 +20,14 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.datawork.R;
@@ -45,20 +54,32 @@ import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class FragmentPagos extends Fragment {
     private Mensaje ms;
-
+    private Context ct;
+    private static final String PACKAGE_NAME = "com.bcp.innovacxion.yapeapp";
     Workbook workbook = new HSSFWorkbook();
     DatabaseReference databaseReference;
     RVPadapter adaptadorPagos;
     ArrayList<Pagos> listaPagos;
+    ArrayAdapter<String> adapter;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        ct = context;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View raiz = inflater.inflate(R.layout.fragment_pagos, container, false);
+
 
         FirebaseApp.initializeApp(raiz.getContext());
         FirebaseDatabase databaseInsertar = FirebaseDatabase.getInstance();
@@ -72,6 +93,16 @@ public class FragmentPagos extends Fragment {
                         .inflate(R.layout.agregar_pago_dialog,null);
 
                 ms = new Mensaje(raiz.getContext());
+                PackageManager pm = ct.getPackageManager();
+
+                Spinner app;
+                app = raiz1.findViewById(R.id.app);
+
+                String[] datos = {"⇊⇊⇊⇊","Yape", "BBVA", "BCP"};
+
+                adapter = new ArrayAdapter<>(ct, R.layout.simple_spinner, datos);
+                adapter.setDropDownViewResource(R.layout.drop_spinner);
+                app.setAdapter(adapter);
 
                 TextInputLayout nombreLayout, pagoLayout;
                 nombreLayout = raiz1.findViewById(R.id.titulolayout);
@@ -80,6 +111,7 @@ public class FragmentPagos extends Fragment {
                 TextInputEditText name, pay;
                 name = raiz1.findViewById(R.id.NombreEmpleado);
                 pay = raiz1.findViewById(R.id.PagoEmpleado);
+
 
                 SpannableString agregar = new SpannableString("Agregar");
                 agregar.setSpan(new ForegroundColorSpan(Color.BLACK),0,agregar.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -90,35 +122,71 @@ public class FragmentPagos extends Fragment {
                         .setPositiveButton("Agregar Registro", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                if(Objects.requireNonNull(name.getText()).toString().isEmpty()){
-                                    nombreLayout.setError("Debes llenar este campo");
-                                } else if (pay.getText().toString().isEmpty()) {
-                                    pagoLayout.setError("Debes llenar este campo");
-                                } else {
-                                    ms.MProgressBarDato();
-                                    String payString = pay.getText().toString();
-                                    double payValue;
+                                //CAPTURAR NOMBRE DEL SPINNER Y REDIRECCIONAR A LA APP
+                                String selectedAppName = app.getSelectedItem().toString();
+                                if (!selectedAppName.isEmpty()) {
+                                    String packageName = getPackageFromAppName(selectedAppName);
+                                    if (packageName != null) {
+                                        Intent launchIntent = pm.getLaunchIntentForPackage(packageName);
+                                        SpannableString confirmar = new SpannableString("Confirmar transferencia");
+                                        agregar.setSpan(new ForegroundColorSpan(Color.BLACK),0,agregar.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-                                    try {
-                                        // Attempt to convert the String to a double
-                                        payValue = Double.parseDouble(payString);
-                                    } catch (NumberFormatException e) {
-                                        // Handle the case where the input is not a valid number
-                                        pagoLayout.setError("Formato de pago inválido");
-                                        return;
+                                        SpannableString realizo = new SpannableString("¿Ya realizó el pago?");
+                                        agregar.setSpan(new ForegroundColorSpan(Color.BLACK),0,agregar.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                        //PREGUNTA AL USUARIO SI YA HIZO LA TRANSFERENCIA PARA MANDARLO A OTRA APLICACIÓN
+                                        AlertDialog pregunta = new AlertDialog.Builder(raiz.getContext())
+                                                .setTitle(confirmar)
+                                                .setMessage(realizo)
+                                                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                        ms.MProgressBarDato();
+
+                                                        String payString = pay.getText().toString();
+                                                        double payValue;
+
+                                                        try {
+                                                            // Attempt to convert the String to a double
+                                                            payValue = Double.parseDouble(payString);
+                                                        } catch (NumberFormatException e) {
+                                                            // Handle the case where the input is not a valid number
+                                                            pagoLayout.setError("Formato de pago inválido");
+                                                            return;
+                                                        }
+                                                        Pagos pagos = new Pagos();
+                                                        //Falta agregar método de pago aquí
+
+                                                        pagos.setNombre(name.getText().toString());
+                                                        pagos.setPago(payValue);
+
+                                                        databaseInsertar.getReference().child("Pagos")
+                                                                .push().setValue(pagos)
+                                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                    @Override
+                                                                    public void onSuccess(Void unused) {
+                                                                        ms.MCloseProgBar(true);
+                                                                    }
+                                                                });
+                                                    }
+                                                })
+                                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                        if (launchIntent != null) {
+                                                            startActivity(launchIntent);
+                                                        } else {
+                                                            Toast.makeText(ct, "No se pudo abrir la aplicación", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }
+                                                })
+                                                .create();
+                                        pregunta.getWindow().setBackgroundDrawable(new ColorDrawable(Color.BLACK));
+                                        pregunta.show();
+                                    } else {
+                                        Toast.makeText(ct, "No se encontró la aplicación", Toast.LENGTH_SHORT).show();
                                     }
-                                    Pagos pagos = new Pagos();
-                                    pagos.setNombre(name.getText().toString());
-                                    pagos.setPago(payValue);
-
-                                    databaseInsertar.getReference().child("Pagos")
-                                            .push().setValue(pagos).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void unused) {
-                                                    ms.MCloseProgBar(true);
-                                                    Toast.makeText(raiz.getContext(), "Se guardó registro de pago", Toast.LENGTH_SHORT).show();
-                                                }
-                                            });
+                                } else {
+                                    Toast.makeText(ct, "Por favor selecciona una aplicación", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         })
@@ -268,6 +336,50 @@ public class FragmentPagos extends Fragment {
 
         rv.setAdapter(adaptadorPagos);
 
+        //CAMBIO DE TEXTO CUANDO SE MANTENGA PRESIONADO
+        TextView contador, borrar;
+        contador = raiz.findViewById(R.id.contador);
+        borrar = raiz.findViewById(R.id.btnImprimir);
+        //MÉTODOS EN EL ADAPTADOR PARA CAMBIAR TEXTO
+        adaptadorPagos.setSelectionTextView(contador);
+        adaptadorPagos.setSelectionTextView1(borrar);
+
+        borrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ms = new Mensaje(raiz.getContext());
+                ms.MProgressBarDato();
+                // Obtén los elementos seleccionados del adaptador
+                Set<Integer> selectedItems = adaptadorPagos.getSelectedItems();
+                for (Integer pos : selectedItems){
+                    Pagos pagos = listaPagos.get(pos);
+                    databaseInsertar.getReference()
+                            .child("Pagos")
+                            .child(pagos.getKey())
+                            .removeValue()
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    ms.MCloseProgBar(true);
+                                    borrar.setText("Imprimir");
+                                    contador.setText("Registro de pagos");
+                                    Toast.makeText(raiz.getContext(), "Se borró el registro ", Toast.LENGTH_SHORT).show();
+                                    // Una vez que se borra el elemento, quítalo de la lista de elementos seleccionados
+                                    adaptadorPagos.getSelectedItems().remove(pos);
+                                    // Notifica al adaptador que los datos han cambiado
+                                    adaptadorPagos.notifyDataSetChanged();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                }
+                            });
+                }
+            }
+        });
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -301,6 +413,19 @@ public class FragmentPagos extends Fragment {
             pagoLayout.setError("Formato de pago inválido");
             return Double.NaN; // Or a suitable default value
         }
+    }
+
+    public String getPackageFromAppName(String appName) {
+        PackageManager pm = ct.getPackageManager();
+        Intent intent = new Intent(Intent.ACTION_MAIN, null);
+        intent.addCategory(Intent.CATEGORY_LAUNCHER);
+        List<ResolveInfo> apps = pm.queryIntentActivities(intent, 0);
+        for (ResolveInfo info : apps) {
+            if (info.loadLabel(pm).toString().equalsIgnoreCase(appName)) {
+                return info.activityInfo.packageName;
+            }
+        }
+        return null;
     }
 
     public void imprimirPagos(){
