@@ -8,6 +8,10 @@
     <color name="btn">#C7C7CC</color>
     <color name="rojo">#DF1919</color>
 
+    <color name="btngreen">#068251</color>
+    <color name="green">#00FF00</color> <!-- Color verde -->
+    <color name="red">#FF0000</color> <!-- Color rojo -->
+
     <!-- Colores -->
     <color name="colorPrimary">#6200EE</color> <!-- Color principal -->
     <color name="colorPrimaryDark">#3700B3</color> <!-- Color primario oscuro -->

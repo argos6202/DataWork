@@ -38,6 +38,8 @@ android {
 dependencies {
     implementation("com.android.volley:volley:1.2.1")
 
+    implementation ("com.onesignal:OneSignal:[5.0.0, 5.99.99]")
+
     implementation("org.apache.poi:poi-ooxml:5.2.3")
     implementation("org.apache.poi:poi-scratchpad:5.2.3")
 

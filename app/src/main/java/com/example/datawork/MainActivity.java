@@ -2,16 +2,28 @@ package com.example.datawork;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.net.ConnectivityManager;
+import android.net.NetworkCapabilities;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.util.Patterns;
@@ -30,9 +42,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.datawork.menuInicio.generarNomina;
+import com.example.datawork.util.ConnectivityReceiver;
 import com.example.datawork.util.Mensaje;
+import com.example.datawork.util.Notificacion;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -45,13 +61,15 @@ import org.json.JSONObject;
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ConnectivityReceiver.ConnectivityListener {
 
     private RequestQueue requestQueue;
     private static final String API_URL = "https://api.openweathermap.org/data/2.5/weather?q=Lima&appid=301d7dc2188e2532dad24881f5e0e283&units=metric\"c";
-
+    private ConnectivityManager connectivityManager;
+    private ConnectivityReceiver connectivityReceiver;
     FirebaseAuth mAuth;
     private int backPressCount = 0;
+    private Notificacion nt;
     private Mensaje ms;
     private ImageView logo;
     private TextView textViewTemperatura;
@@ -60,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
     private Button btnLogin, btnRegistrar;
     private Handler handler = new Handler(Looper.getMainLooper());
     ArrayAdapter<String> adapter;
+
+    public MainActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,13 +99,20 @@ public class MainActivity extends AppCompatActivity {
 
         requestQueue = Volley.newRequestQueue(this);
 
+        // Registra el BroadcastReceiver
+        connectivityReceiver = new ConnectivityReceiver(this);
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(connectivityReceiver, intentFilter);
+
         obtenerTemperatura();
         validacionOnTime();
+        connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
 
         Spinner app;
         app = this.findViewById(R.id.appq);
 
-        String[] datos = {"","Yape", "BBVA", "BCP"};
+        String[] datos = {"", "Yape", "BBVA", "BCP"};
 
         adapter = new ArrayAdapter<>(this, R.layout.simple_spinner, datos);
         adapter.setDropDownViewResource(R.layout.drop_spinner);
@@ -112,28 +140,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        /*app.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
-                String selectedAppName = parent.getItemAtPosition(position).toString();
-                String packageName = getPackageFromAppName(selectedAppName);
-                if (packageName != null) {
-                    Intent launchIntent = getPackageManager().getLaunchIntentForPackage(packageName);
-                    if (launchIntent != null) {
-                        startActivity(launchIntent);
-                        Toast.makeText(getApplicationContext(), "Se encontró la app: " + packageName, Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "No se pudo abrir la aplicación", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+    }
 
-            }
-        });*/
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(connectivityReceiver);
     }
 
     private void obtenerTemperatura() {
@@ -160,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
                             double temperaturaCelsius = temperaturaKelvin - 273.15;
 
                             // Muestra la temperatura en Celsius en el TextView
-                            textViewTemperatura.setText("Clima hoy: " +descripcionClima + String.format("\n%.1f °C", temperaturaCelsius));
+                            textViewTemperatura.setText("Clima hoy: " + descripcionClima + String.format("\n%.1f °C", temperaturaCelsius));
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -196,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    public void OnClick_btnEntrar(View v){
+    public void OnClick_btnEntrar(View v) {
 
         ms = new Mensaje(this);
 
@@ -204,12 +217,12 @@ public class MainActivity extends AppCompatActivity {
         email = txtUsuario.getText().toString();
         password = txtContraseña.getText().toString();
 
-        if (TextUtils.isEmpty(email)){
-            Toast.makeText(MainActivity.this,"Ingresa tu usuario",Toast.LENGTH_LONG).show();
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(MainActivity.this, "Ingresa tu usuario", Toast.LENGTH_LONG).show();
             return;
         }
-        if (TextUtils.isEmpty(password)){
-            Toast.makeText(MainActivity.this,"Ingresa tu contraseña",Toast.LENGTH_LONG).show();
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(MainActivity.this, "Ingresa tu contraseña", Toast.LENGTH_LONG).show();
             return;
         }
         ms.MProgressBarDato();
@@ -219,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            startActivity(new Intent(MainActivity.this,Frm_Menu.class));
+                            startActivity(new Intent(MainActivity.this, Frm_Menu.class));
                             ms.MCloseProgBar(true);
                             finish();
                         } else {
@@ -234,6 +247,7 @@ public class MainActivity extends AppCompatActivity {
                 });
 
     }
+
     private void validacionOnTime() {
         txtUsuario.addTextChangedListener(new TextWatcher() {
             @Override
@@ -288,35 +302,9 @@ public class MainActivity extends AppCompatActivity {
     private boolean isValidPassword(String password) {
         return password.length() >= 6; //mínimo 6 caracteres
     }
-    /*public void OnClick_btnRegistrarse(View v){
 
-        Spinner app;
-        app = this.findViewById(R.id.app);
-
-        String[] datos = {"Yape", "BBVA", "BCP"};
-
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, datos);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        app.setAdapter(adapter);
-
-        String packageName = getPackageFromAppName(app.getText().toString().trim());
-        if (packageName != null) {
-            // Haz algo con el nombre del paquete, como iniciar la aplicación
-            Intent launchIntent = this.getPackageManager().getLaunchIntentForPackage(packageName);
-            if (launchIntent != null) {
-                startActivity(launchIntent);
-                Toast.makeText(this, "Se encontró " + packageName, Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "No se pudo abrir la aplicación", Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            // No se encontró el nombre de la aplicación en las aplicaciones instaladas
-            Toast.makeText(this, "No se encontró la aplicación", Toast.LENGTH_SHORT).show();
-        }
-    }*/
-
-    public void OnClick_IniciarSesion(View view){
-        startActivity(new Intent(MainActivity.this,Frm_Menu.class));
+    public void OnClick_IniciarSesion(View view) {
+        startActivity(new Intent(MainActivity.this, Frm_Menu.class));
     }
 
     public String getPackageFromAppName(String appName) {
@@ -330,5 +318,31 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return null;
+    }
+    private boolean isConnected() {
+        NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork());
+        return capabilities != null && (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) || capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR));
+    }
+
+    @Override
+    public void onConnectivityChanged(boolean isConnected) {
+        if (isConnected()) {
+            // Conexión a Internet disponible
+            Snackbar.make(findViewById(android.R.id.content), "Conexión a Internet disponible", Snackbar.LENGTH_SHORT)
+                    .setBackgroundTint(ContextCompat.getColor(this, R.color.green))
+                    .setTextColor(getResources().getColor(R.color.black))
+                    .show();
+        } else {
+            // Sin conexión a Internet
+            Snackbar.make(findViewById(android.R.id.content), "Sin conexión a Internet", Snackbar.LENGTH_LONG)
+                    .setBackgroundTint(ContextCompat.getColor(this, R.color.red))
+                    .setTextColor(getResources().getColor(R.color.white))
+                    .setAction("Reintentar", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // No es necesario hacer nada aquí ya que la conectividad se verifica automáticamente
+                        }
+                    }).show();
+        }
     }
 }

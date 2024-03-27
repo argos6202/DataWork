@@ -81,7 +81,6 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:fontFamily="@font/roboto_slab"
                 android:alpha="0.9"
                 android:textColorHint="@color/black"
                 android:layout_width="match_parent"
@@ -103,7 +102,6 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:fontFamily="@font/roboto_slab"
                 android:textColorHint="@color/black"
                 android:layout_width="match_parent"
                 android:hint="Contraseña"

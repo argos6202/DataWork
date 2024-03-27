@@ -1,9 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".Frm_Registro">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:id="@+id/header"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image"
+            android:contentDescription="@string/app_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/top_background"
+            app:srcCompat="@drawable/top_background" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="30sp">
+            <TextView
+                android:textColor="@color/white"
+                android:fontFamily="@font/sfblack"
+                android:textSize="25sp"
+                android:text="Hola,\nRecupera\ntu contraseña"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:padding="30sp"
+        android:layout_below="@id/header"
+        android:id="@+id/content"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:fontFamily="@font/sfblack"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:text="Email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:layout_marginTop="12sp"
+            android:textAlignment="textStart"
+            android:paddingTop="12sp"
+            android:paddingBottom="12sp"
+            android:paddingLeft="20sp"
+            android:background="@drawable/ovall_line"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:hint="Ingrese su email"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+        <Button
+            android:layout_marginTop="12sp"
+            android:fontFamily="@font/robotobold"
+            android:textColor="@color/white"
+            android:text="Recuperar"
+            android:backgroundTint="@color/btngreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</RelativeLayout>
