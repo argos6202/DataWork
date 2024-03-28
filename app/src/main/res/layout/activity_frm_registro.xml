@@ -4,22 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context=".Frm_Registro">
 
     <RelativeLayout
+        android:layout_marginTop="-10sp"
         android:id="@+id/header"
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <ImageView
+            android:backgroundTint="@color/black"
             android:id="@+id/image"
             android:contentDescription="@string/app_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/top_background"
-            app:srcCompat="@drawable/top_background" />
+            android:background="@drawable/top_background" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,7 +30,7 @@
             <TextView
                 android:textColor="@color/white"
                 android:fontFamily="@font/sfblack"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 android:text="Hola,\nRecupera\ntu contraseña"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -42,7 +44,15 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <ImageView
+            android:layout_marginTop="-20sp"
+            android:id="@+id/imagen"
+            android:layout_below="@id/header"
+            android:src="@drawable/signup_banner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
         <TextView
+            android:layout_marginTop="20sp"
             android:fontFamily="@font/sfblack"
             android:textColor="@color/black"
             android:textSize="30sp"
@@ -50,23 +60,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <EditText
+            android:id="@+id/emailRecuperar"
+            android:inputType="textEmailAddress"
             android:layout_marginTop="12sp"
             android:textAlignment="textStart"
             android:paddingTop="12sp"
             android:paddingBottom="12sp"
             android:paddingLeft="20sp"
             android:background="@drawable/ovall_line"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:hint="Ingrese su email"
             android:layout_width="match_parent"
             android:layout_height="50dp"/>
         <Button
+            android:id="@+id/btnRecuperar"
+            android:shadowColor="@color/black"
+            android:textSize="20sp"
+            android:shadowDx="10"
+            android:shadowDy="10"
+            android:elevation="10sp"
             android:layout_marginTop="12sp"
             android:fontFamily="@font/robotobold"
             android:textColor="@color/white"
             android:text="Recuperar"
-            android:backgroundTint="@color/btngreen"
+            android:backgroundTint="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>

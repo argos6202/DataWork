@@ -109,35 +109,10 @@ public class MainActivity extends AppCompatActivity implements ConnectivityRecei
         connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
 
-        Spinner app;
-        app = this.findViewById(R.id.appq);
-
-        String[] datos = {"", "Yape", "BBVA", "BCP"};
-
-        adapter = new ArrayAdapter<>(this, R.layout.simple_spinner, datos);
-        adapter.setDropDownViewResource(R.layout.drop_spinner);
-        app.setAdapter(adapter);
-
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String selectedAppName = app.getSelectedItem().toString();
-                if (!selectedAppName.isEmpty()) {
-                    String packageName = getPackageFromAppName(selectedAppName);
-                    if (packageName != null) {
-                        Intent launchIntent = getPackageManager().getLaunchIntentForPackage(packageName);
-                        if (launchIntent != null) {
-                            startActivity(launchIntent);
-                            Toast.makeText(getApplicationContext(), "Se encontró la app: " + packageName, Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(getApplicationContext(), "No se pudo abrir la aplicación", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(getApplicationContext(), "No se encontró la aplicación", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(getApplicationContext(), "Por favor selecciona una aplicación", Toast.LENGTH_SHORT).show();
-                }
+                startActivity(new Intent(MainActivity.this, Frm_Registro.class));
             }
         });
 
